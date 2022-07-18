@@ -46,29 +46,44 @@ class PlayVC: UIViewController {
         playAgainButton.setTitle("Play Again", for: .normal)
         playAgainButton.layer.cornerRadius = 8
         playAgainButton.isHidden = true
-
+        
     }
     
     @IBAction func playAgainButtonAction(_ sender: UIButton) {
-        turnCount = 0
-        activePlayer = 2
-        activeGame = true
-        gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         
-        winnerLabel.text = "turn!"
-        playerImage.image = UIImage(named: "ico_X")
+        let refreshAlert = UIAlertController(title: "Play Again!", message: "Are You Sure to restart game?", preferredStyle: UIAlertController.Style.alert)
         
-        play1.setImage(UIImage(named: "box"), for: .normal)
-        play2.setImage(UIImage(named: "box"), for: .normal)
-        play3.setImage(UIImage(named: "box"), for: .normal)
-        play4.setImage(UIImage(named: "box"), for: .normal)
-        play5.setImage(UIImage(named: "box"), for: .normal)
-        play6.setImage(UIImage(named: "box"), for: .normal)
-        play7.setImage(UIImage(named: "box"), for: .normal)
-        play8.setImage(UIImage(named: "box"), for: .normal)
-        play9.setImage(UIImage(named: "box"), for: .normal)
+        refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [self] (action: UIAlertAction!) in
+            
+            turnCount = 0
+            activePlayer = 2
+            activeGame = true
+            gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            
+            winnerLabel.text = "turn!"
+            playerImage.image = UIImage(named: "ico_X")
+            
+            play1.setImage(UIImage(named: "box"), for: .normal)
+            play2.setImage(UIImage(named: "box"), for: .normal)
+            play3.setImage(UIImage(named: "box"), for: .normal)
+            play4.setImage(UIImage(named: "box"), for: .normal)
+            play5.setImage(UIImage(named: "box"), for: .normal)
+            play6.setImage(UIImage(named: "box"), for: .normal)
+            play7.setImage(UIImage(named: "box"), for: .normal)
+            play8.setImage(UIImage(named: "box"), for: .normal)
+            play9.setImage(UIImage(named: "box"), for: .normal)
+            
+            playAgainButton.isHidden = true
+        }))
         
-        playAgainButton.isHidden = true
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
+            
+            refreshAlert .dismiss(animated: true, completion: nil)
+            
+            
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
         
     }
     
@@ -86,7 +101,7 @@ class PlayVC: UIViewController {
                 winnerLabel.text = "turn!"
                 playerImage.image = UIImage(named: "ico_X")
             } else {
-                sender.setImage(UIImage(named: "ico_O"), for: []) 
+                sender.setImage(UIImage(named: "ico_O"), for: [])
                 activePlayer = 2
                 winnerLabel.text = "turn!"
                 playerImage.image = UIImage(named: "ico_O")
@@ -98,13 +113,13 @@ class PlayVC: UIViewController {
                     activeGame = false
                     
                     winnerLabel.isHidden = false
-                   playAgainButton.isHidden = false
+                    playAgainButton.isHidden = false
                     
                     if gameState[combinations[0]] == 1 {
                         winnerLabel.text = "WINS!"
                         playerImage.image = UIImage(named: "ico_O")
                     } else if gameState[combinations[1]] == 2{
-                       winnerLabel.text = "WINS!"
+                        winnerLabel.text = "WINS!"
                         playerImage.image = UIImage(named: "ico_X")
                     }
                 }
