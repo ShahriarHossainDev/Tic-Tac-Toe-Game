@@ -51,7 +51,7 @@ class PlayVC: UIViewController {
     
     @IBAction func playAgainButtonAction(_ sender: UIButton) {
         
-        let refreshAlert = UIAlertController(title: "Play Again!", message: "Are You Sure to restart game?", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Play Again!", message: "Are you sure to restart the game?", preferredStyle: UIAlertController.Style.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [self] (action: UIAlertAction!) in
             
